@@ -8,6 +8,10 @@ Training language models to play Pac-Man by generating strategy code instead of 
 
 <video src="https://github.com/user-attachments/assets/e3310ca1-fcfe-4bdf-ac76-55333646bb13" controls></video>
 
+**🤗 Trained Models:**
+- [justinj92/Llama-3.1-8B-Pacman-Player](https://huggingface.co/justinj92/Llama-3.1-8B-Pacman-Player) (Llama 3.1 8B)
+- [justinj92/gpt-oss-20B-pacmanplayer](https://huggingface.co/justinj92/gpt-oss-20B-pacmanplayer) (GPT-OSS 20B)
+
 ## What Is This?
 
 A reinforcement learning environment where LLMs learn to write Python functions that control Pac-Man. Instead of outputting action IDs directly, the model generates code like:
@@ -51,7 +55,7 @@ The environment validates the code, executes it safely, and uses the trajectory 
 │  (UP,RIGHT,DOWN,LEFT,STAY)                              │
 └─────────────────────────────────────────────────────────┘
                          ↓
-              Llama 3.2 3B (LoRA)
+              Llama 3.1 8B Instruct (LoRA)
                          ↓
 ┌─────────────────────────────────────────────────────────┐
 │  3. LLM GENERATES STRATEGY CODE                         │
@@ -89,7 +93,10 @@ The environment validates the code, executes it safely, and uses the trajectory 
 
 **Technical Stack:**
 
-- **Model**: Llama 3.2 3B (LoRA rank 32)
+- **Base Model**: [Llama 3.1 8B Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) (LoRA rank 32, alpha 64)
+- **Trained Models**: 
+  - [🤗 Llama-3.1-8B-Pacman-Player](https://huggingface.co/justinj92/Llama-3.1-8B-Pacman-Player) (8B)
+  - [🤗 gpt-oss-20B-pacmanplayer](https://huggingface.co/justinj92/gpt-oss-20B-pacmanplayer) (20B)
 - **Training**: GRPO via TRL + Unsloth
 - **Environment**: Docker-based FastAPI server (configurable difficulty, ghost AI)
 - **Observation**: ~500 token prompts with structured game state
@@ -140,7 +147,29 @@ docker pull ghcr.io/meta-pytorch/openenv-pacman-env:latest
 
 **Explore the notebook:**
 
-Check out [notebooks/GPT-OSS-Play-MsPacMan.ipynb](notebooks/GPT-OSS-Play-MsPacMan.ipynb) for interactive examples.
+Check out [notebooks/Pacman-RL.ipynb](notebooks/Pacman-RL.ipynb) for interactive examples.
+
+**Use the pretrained models:**
+
+Download from 🤗 Hugging Face (choose one):
+
+**Option 1: Llama 3.1 8B**
+```bash
+git clone https://huggingface.co/justinj92/Llama-3.1-8B-Pacman-Player
+python play_the_game/simple_model_server.py --model-path Llama-3.1-8B-Pacman-Player
+```
+
+**Option 2: GPT-OSS 20B (larger, better performance)**
+```bash
+git clone https://huggingface.co/justinj92/gpt-oss-20B-pacmanplayer
+python play_the_game/simple_model_server.py --model-path gpt-oss-20B-pacmanplayer
+```
+
+**Then launch the web UI:**
+```bash
+python play_the_game/html_pacman_player.py
+# Open browser to http://localhost:5000
+```
 
 **Train from scratch:**
 
@@ -149,10 +178,10 @@ Check out [notebooks/GPT-OSS-Play-MsPacMan.ipynb](notebooks/GPT-OSS-Play-MsPacMa
 python train_pacman_docker_grpo_v2.py
 ```
 
-**Watch a trained agent play:**
+**Watch your trained agent play:**
 
 ```bash
-# Start model server
+# Start model server with your checkpoint
 python play_the_game/simple_model_server.py --model-path outputs_pacman/final_model
 
 # Launch web UI (separate terminal)
@@ -223,6 +252,41 @@ Step 400 | Reward: +78.2 | Turns: 312  | Coordinated ghost evasion
 **Full dependency list:** See [requirements.txt](requirements.txt)
 
 **Installation guide:** See [INSTALL.md](INSTALL.md)
+
+## Pretrained Models
+
+Two trained models are available on Hugging Face:
+
+### 🤗 Llama 3.1 8B Model
+
+**[justinj92/Llama-3.1-8B-Pacman-Player](https://huggingface.co/justinj92/Llama-3.1-8B-Pacman-Player)**
+
+**Details:**
+- Base: Meta-Llama-3.1-8B-Instruct
+- Fine-tuning: GRPO with code generation
+- LoRA: rank 32, alpha 64
+- Training: 400 steps on Pac-Man gameplay
+
+**Quick Use:**
+```bash
+git clone https://huggingface.co/justinj92/Llama-3.1-8B-Pacman-Player
+python play_the_game/simple_model_server.py --model-path Llama-3.1-8B-Pacman-Player
+```
+
+### 🤗 GPT-OSS 20B Model
+
+**[justinj92/gpt-oss-20B-pacmanplayer](https://huggingface.co/justinj92/gpt-oss-20B-pacmanplayer)**
+
+**Details:**
+- Base: GPT-OSS 20B
+- Fine-tuning: GRPO with code generation
+- Larger model with potentially better performance
+
+**Quick Use:**
+```bash
+git clone https://huggingface.co/justinj92/gpt-oss-20B-pacmanplayer
+python play_the_game/simple_model_server.py --model-path gpt-oss-20B-pacmanplayer
+```
 
 ## Installation as Package
 

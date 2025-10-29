@@ -93,6 +93,26 @@ pip install -e ".[dev]"
 
 ## Quick Test
 
+**Option 1: Use Pretrained Models**
+
+Download and test a pretrained model from Hugging Face (choose one):
+
+```bash
+# Option A: Llama 3.1 8B (smaller, faster)
+git clone https://huggingface.co/justinj92/Llama-3.1-8B-Pacman-Player
+python play_the_game/simple_model_server.py --model-path Llama-3.1-8B-Pacman-Player
+
+# Option B: GPT-OSS 20B (larger, potentially better performance)
+git clone https://huggingface.co/justinj92/gpt-oss-20B-pacmanplayer
+python play_the_game/simple_model_server.py --model-path gpt-oss-20B-pacmanplayer
+
+# In another terminal, launch web UI
+python play_the_game/html_pacman_player.py
+# Open http://localhost:5000 in your browser
+```
+
+**Option 2: Train from Scratch**
+
 Run a quick training test:
 
 ```bash
@@ -155,5 +175,5 @@ export PACMAN_NUM_GHOSTS=4              # Number of ghosts (default: 4)
 ## Next Steps
 
 - Read the [README.md](README.md) for project overview
-- Check out [notebooks/GPT-OSS-Play-MsPacMan.ipynb](notebooks/GPT-OSS-Play-MsPacMan.ipynb) for examples
+- Check out [notebooks/Pacman-RL.ipynb](notebooks/Pacman-RL.ipynb) for examples
 - Start training: `python train_pacman_docker_grpo_v2.py`

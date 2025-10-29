@@ -187,7 +187,7 @@ def main():
         print("\nNext steps:")
         print("  1. Pull Docker image: docker pull ghcr.io/meta-pytorch/openenv-pacman-env:latest")
         print("  2. Start training: python train_pacman_docker_grpo_v2.py")
-        print("  3. Check notebook: notebooks/GPT-OSS-Play-MsPacMan.ipynb")
+        print("  3. Check notebook: notebooks/Pacman-RL.ipynb")
         return 0
     else:
         print("✗ Installation incomplete. Please fix the errors above.")
