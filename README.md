@@ -113,18 +113,45 @@ play_the_game/            # Inference and visualization
 train_pacman_docker_grpo_v2.py  # Main training script
 ```
 
+## Installation
+
+This project requires [Meta's OpenEnv framework](https://github.com/meta-pytorch/OpenEnv). See [INSTALL.md](INSTALL.md) for detailed setup instructions.
+
+**Quick install:**
+
+```bash
+# 1. Install OpenEnv
+git clone https://github.com/meta-pytorch/OpenEnv.git
+cd OpenEnv && pip install -e . && cd ..
+
+# 2. Clone this repo and install dependencies
+git clone https://github.com/cpich3g/pacman-rl.git
+cd pacman-rl
+pip install -r requirements.txt
+
+# 3. Register pacman_env with OpenEnv
+export PYTHONPATH="${PYTHONPATH}:$(pwd)"
+
+# 4. Pull Docker image
+docker pull ghcr.io/meta-pytorch/openenv-pacman-env:latest
+```
+
 ## Quick Start
+
+**Explore the notebook:**
+
+Check out [notebooks/GPT-OSS-Play-MsPacMan.ipynb](notebooks/GPT-OSS-Play-MsPacMan.ipynb) for interactive examples.
 
 **Train from scratch:**
 
-```powershell
+```bash
 # Launches Docker container + GRPO training
 python train_pacman_docker_grpo_v2.py
 ```
 
 **Watch a trained agent play:**
 
-```powershell
+```bash
 # Start model server
 python play_the_game/simple_model_server.py --model-path outputs_pacman/final_model
 
@@ -188,6 +215,21 @@ Step 400 | Reward: +78.2 | Turns: 312  | Coordinated ghost evasion
 ## Requirements
 
 - Python 3.11+
+- [OpenEnv](https://github.com/meta-pytorch/OpenEnv) (Meta's environment framework)
 - PyTorch, Unsloth, TRL, Datasets
 - Docker (for environment server)
 - GPU recommended (4-bit quantization supported)
+
+**Full dependency list:** See [requirements.txt](requirements.txt)
+
+**Installation guide:** See [INSTALL.md](INSTALL.md)
+
+## Installation as Package
+
+```bash
+# Install in development mode
+pip install -e .
+
+# Or install normally
+pip install .
+```

@@ -1,0 +1,13 @@
+include README.md
+include INSTALL.md
+include LICENSE
+include requirements.txt
+include .gitignore
+
+recursive-include pacman_env *.py
+recursive-include notebooks *.ipynb
+recursive-include play_the_game *.py
+
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store

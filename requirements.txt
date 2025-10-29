@@ -1,0 +1,31 @@
+# Core ML/RL Dependencies
+torch>=2.0.0
+transformers>=4.40.0
+datasets>=2.18.0
+trl>=0.8.0
+unsloth[colab-new]>=2024.3
+
+# OpenEnv Framework (required)
+# Install from source: https://github.com/meta-pytorch/OpenEnv
+# git+https://github.com/meta-pytorch/OpenEnv.git
+
+# Web Server Dependencies
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+
+# Visualization/Inference
+flask>=3.0.0
+flask-socketio>=5.3.0
+python-socketio>=5.11.0
+
+# Utilities
+numpy>=1.24.0
+pyyaml>=6.0
+requests>=2.31.0
+
+# Development Tools (optional)
+black>=24.0.0
+flake8>=7.0.0
+mypy>=1.8.0
+pre-commit>=3.6.0
