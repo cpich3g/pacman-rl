@@ -6,8 +6,7 @@ Training language models to play Pac-Man by generating strategy code instead of 
 
 ## Watch the Trained Agent Play
 
-![Trained AI playing Pac-Man](https://github.com/cpich3g/pacman-rl/blob/main/play_the_game/gameplay/pacman_gameplay.mp4)
-
+<video src="https://github.com/user-attachments/assets/e3310ca1-fcfe-4bdf-ac76-55333646bb13" controls></video>
 
 ## What Is This?
 
