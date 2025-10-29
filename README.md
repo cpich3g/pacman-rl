@@ -6,9 +6,8 @@ Training language models to play Pac-Man by generating strategy code instead of 
 
 ## Watch the Trained Agent Play
 
-![Trained AI playing Pac-Man](https://github.com/user-attachments/assets/YOUR_VIDEO_ID_HERE)
+![Trained AI playing Pac-Man](https://github.com/cpich3g/pacman-rl/blob/main/play_the_game/gameplay/pacman_gameplay.mp4)
 
-> **How to add your video:** Record gameplay, then drag & drop the video file into a GitHub issue or PR comment. Copy the generated URL (format: `https://github.com/user-attachments/assets/...`) and replace `YOUR_VIDEO_ID_HERE` above.
 
 ## What Is This?
 
