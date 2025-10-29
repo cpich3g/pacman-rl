@@ -4,6 +4,12 @@
 
 Training language models to play Pac-Man by generating strategy code instead of discrete actions.
 
+## Watch the Trained Agent Play
+
+![Trained AI playing Pac-Man](https://github.com/user-attachments/assets/YOUR_VIDEO_ID_HERE)
+
+> **How to add your video:** Record gameplay, then drag & drop the video file into a GitHub issue or PR comment. Copy the generated URL (format: `https://github.com/user-attachments/assets/...`) and replace `YOUR_VIDEO_ID_HERE` above.
+
 ## What Is This?
 
 A reinforcement learning environment where LLMs learn to write Python functions that control Pac-Man. Instead of outputting action IDs directly, the model generates code like:

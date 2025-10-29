@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 """
-Pac-Man GRPO Training Script (Docker-based, Marooned-style rollouts)
-
-This variant adds:
-- Dynamic observation dataset collected from environment rollouts
-- Digit-gated generation so completions are single integer actions
-- Multi-step GRPO reward shaping aligned with the PPO trainer
-- Early static sanity checks to discard bad strategies before live rollouts
+Pac-Man GRPO Training Script
 """
 from unsloth import (
     FastLanguageModel,
@@ -66,10 +60,10 @@ Write your strategy (max 8 lines):
 class Config:
     # Model configuration
     MODEL_NAME = "unsloth/Llama-3.2-3B-Instruct"
-    MAX_SEQ_LENGTH = 2048  # Increased from 1024 for longer prompts
+    MAX_SEQ_LENGTH = 2048
     USE_LORA = True
-    LORA_RANK = 32  # Increased from 16 for better capacity
-    LORA_ALPHA = 64  # 2x rank for optimal scaling
+    LORA_RANK = 32
+    LORA_ALPHA = 64
     LOAD_IN_4BIT = False
 
     # Environment configuration
@@ -82,23 +76,23 @@ class Config:
 
     # Training configuration
     TEMPERATURE = 1.0
-    LEARNING_RATE = 1e-5  # Increased from 5e-6 but safer than 5e-5
+    LEARNING_RATE = 1e-5
     WEIGHT_DECAY = 0.01
-    WARMUP_RATIO = 0.1  # Reduced from 0.2 for faster learning
-    MAX_GRAD_NORM = 0.5  # Gradient clipping for stability
+    WARMUP_RATIO = 0.1
+    MAX_GRAD_NORM = 0.5
     LR_SCHEDULER = "cosine"
     OPTIMIZER = "adamw_8bit"
 
     BATCH_SIZE = 4
     GRAD_ACCUMULATION = 2
     NUM_GENERATIONS = 3
-    MAX_STEPS = 400  # Reduced from 1200 for initial training
+    MAX_STEPS = 400
     SAVE_STEPS = 200
     LOGGING_STEPS = 1
 
     # Generation configuration (during GRPO rollouts)
-    GEN_TEMPERATURE = 0.7  # Increased from 0.3 for more diversity
-    GEN_TOP_P = 0.9  # Increased from 0.4 for better sampling
+    GEN_TEMPERATURE = 0.7
+    GEN_TOP_P = 0.9
     GEN_TOP_K = 50
     GEN_REPETITION_PENALTY = 1.1  # Prevent repetitive gibberish
     MAX_NEW_TOKENS = 150
@@ -259,7 +253,6 @@ def setup_model():
     setattr(model, "is_loaded_in_4bit", False)
     setattr(model, "is_loaded_in_8bit", False)
 
-    # Prepare model for fast inference (critical for GRPO generation)
     FastLanguageModel.for_inference(model)
 
     print("✅ Model ready")
