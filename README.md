@@ -1,4 +1,4 @@
-# Pac-Man RL — Language Model Strategy Training
+# Pac-Man RL — Language Model Strategy Training [AMD x Unsloth x PyTorch OpenEnv Hackthon - 2nd Place Winner 🏆]
 
 ![Ms. Pac-Man gameplay](https://ale.farama.org/_images/ms_pacman.gif)
 
