@@ -1,3 +1,5 @@
+
+
 # Pac-Man RL — Language Model Strategy Training 
 
 [AMD x Unsloth x PyTorch OpenEnv Hackthon - 2nd Place Winner 🏆]
@@ -216,7 +218,7 @@ python play_the_game/html_pacman_player.py
 - `PACMAN_DIFFICULTY`: 1-5 (maze size, ghost count, AI aggression)
 - `PACMAN_GHOST_AI`: random | heuristic (Blinky/Pinky/Inky/Clyde personalities)
 - `PACMAN_MAZE_SIZE`: Grid dimensions (default 15x15)
-- `PACMAN_MAX_STEPS`: Episode length (default 600)
+- `PACMAN_MAX_STEPS`: Episode length (default 250)
 
 **Reward Structure:**
 
